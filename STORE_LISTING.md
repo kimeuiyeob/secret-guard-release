@@ -19,74 +19,66 @@
 
 ### 상세 설명 (한국어)
 
+> ⚠️ 서비스·브랜드 이름을 목록으로 나열하면 "키워드 스팸(Yellow Argon)"으로 자동 거부됩니다. 종류로 설명하고, 구체적인 목록은 GitHub 링크로 대신하세요. (2026-10-01 실제 거부 사례)
+
 ```
-ChatGPT, Claude, Gemini에 로그나 설정 파일을 붙여넣다가 AWS 키나 DB 비밀번호까지 같이 보내버린 적 있나요?
+AI 채팅에 로그나 설정 파일을 붙여넣다가 클라우드 접근 키나 DB 비밀번호까지 같이 보내버린 적 있나요?
 
-Secret Guard는 AI 채팅에 민감한 값이 전송되는 순간을 잡아서 막아줍니다.
+Secret Guard는 AI 채팅 서비스에 민감한 정보가 전송되기 직전에 이를 감지하고 막아줍니다.
 
-■ 막아주는 경로
-• 붙여넣기 (Ctrl+V)
-• 직접 입력 후 Enter
-• 전송 버튼 클릭
-• 드래그 앤 드롭
-• 파일 첨부: 엑셀, 워드, 파워포인트, PDF, 한글(hwpx), 텍스트·설정·소스코드 파일
+■ 이런 순간을 막아줍니다
+• 입력창에 붙여넣을 때
+• 직접 입력하고 Enter나 전송 버튼을 누를 때
+• 파일을 끌어다 놓거나 첨부할 때 (문서, PDF, 한글, 텍스트·설정 파일 내용까지 검사)
 
-■ 탐지 항목 (60여 종)
-• 클라우드 키: AWS, Alibaba Cloud, GCP, Azure, Tencent, DigitalOcean
-• 개인키: RSA, OpenSSH, PGP, PuTTY, kubeconfig
-• 개발 도구 토큰: GitHub, GitLab, npm, PyPI, Docker Hub, Vault, Terraform
-• SaaS API 키: OpenAI, Anthropic, Stripe, Slack, Hugging Face 등
-• 접속 정보: JWT, Bearer 토큰, DB 접속 문자열, password=... 할당
-• 한국 개인정보: 주민/외국인등록번호, 휴대폰, 운전면허, 여권, 사업자번호, 카드번호
+■ 이런 정보를 찾아냅니다
+• 클라우드 서비스 접근 키와 비밀 키
+• 개발 도구와 API 서비스의 인증 토큰
+• 서버 접속용 개인키, DB 접속 정보, 비밀번호
+• 주민등록번호, 휴대폰 번호, 카드 번호 같은 개인정보
 
 ■ 오탐일 땐
 경고창의 "이번만 허용"을 누르면 15초 동안 검사를 건너뜁니다.
 
 ■ 개인정보 걱정 없음
-모든 검사는 브라우저 안에서만 이뤄집니다. 어떤 데이터도 수집·저장·전송하지 않으며, 네트워크 요청 코드 자체가 없습니다. 소스 코드는 GitHub에 공개되어 있습니다.
+모든 검사는 브라우저 안에서만 이뤄집니다. 어떤 데이터도 수집·저장·전송하지 않으며, 네트워크 요청 코드 자체가 없습니다.
 
-■ 지원 사이트
-claude.ai, ChatGPT, Gemini, Microsoft Copilot, Microsoft 365 Copilot, DeepSeek, Perplexity, Mistral Le Chat, Grok, 뤼튼
+ChatGPT, Claude, Gemini 등 주요 AI 채팅 서비스에서 동작합니다. 지원 사이트와 탐지 항목 전체 목록은 GitHub에서 확인할 수 있습니다.
 
-※ 실수 방지용 도구입니다. 값을 변형해서 입력하거나, 이미지·스캔 PDF·구버전 hwp/doc/xls 파일, 데스크톱 앱은 검사하지 않습니다.
+※ 실수 방지용 도구입니다. 값을 변형해서 입력하거나 이미지 속 내용, 데스크톱 앱은 검사하지 않습니다.
 
-소스 코드: https://github.com/kimeuiyeob/secret-guard-release
+https://github.com/kimeuiyeob/secret-guard-release
 ```
 
 ### Detailed description (English)
 
 ```
-Ever pasted a log or config file into ChatGPT, Claude or Gemini and realized it had your AWS key or database password in it?
+Ever pasted a log or config file into an AI chat and realized it contained a cloud access key or database password?
 
-Secret Guard catches sensitive values right before they are sent to an AI chat.
+Secret Guard detects sensitive information right before it is sent to an AI chat service, and stops it.
 
-■ What it intercepts
-• Paste (Ctrl+V)
-• Typing then pressing Enter
-• Clicking the send button
-• Drag & drop
-• File attachments: Excel, Word, PowerPoint, PDF, HWPX, plus text, config and source files
+■ When it steps in
+• When you paste into the chat box
+• When you type and press Enter or click send
+• When you drop or attach a file (contents of documents, PDFs, HWPX, text and config files are checked)
 
-■ What it detects (60+ types)
-• Cloud keys: AWS, GCP, Azure, Alibaba Cloud, Tencent, DigitalOcean
-• Private keys: RSA, OpenSSH, PGP, PuTTY, kubeconfig
-• Dev tokens: GitHub, GitLab, npm, PyPI, Docker Hub, Vault, Terraform
-• SaaS API keys: OpenAI, Anthropic, Stripe, Slack, Hugging Face and more
-• Credentials: JWTs, Bearer tokens, DB connection strings, password=... assignments
-• Personal data: credit card numbers (Luhn-checked), Korean national ID numbers
+■ What it looks for
+• Cloud service access keys and secret keys
+• Authentication tokens for developer tools and API services
+• Private keys, database connection strings and passwords
+• Personal data such as national ID, phone and credit card numbers
 
 ■ False positive?
 Click "Allow once" to skip checks for 15 seconds.
 
 ■ Private by design
-Everything runs inside your browser. Nothing is collected, stored or transmitted — the extension contains no network code at all. Fully open source.
+Everything runs inside your browser. Nothing is collected, stored or transmitted, and the extension contains no network code.
 
-■ Supported sites
-claude.ai, ChatGPT, Gemini, Microsoft Copilot, Microsoft 365 Copilot, DeepSeek, Perplexity, Mistral Le Chat, Grok, Wrtn
+Works on major AI chat services such as ChatGPT, Claude and Gemini. The full list of supported sites and detection rules is on GitHub.
 
-Note: this is a guard rail against mistakes. Obfuscated values, images, scanned PDFs, legacy .doc/.xls files and desktop apps are not covered.
+Note: this is a guard rail against mistakes. Obfuscated values, text inside images and desktop apps are not covered.
 
-Source: https://github.com/kimeuiyeob/secret-guard-release
+https://github.com/kimeuiyeob/secret-guard-release
 ```
 
 ### 이미지
